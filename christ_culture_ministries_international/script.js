@@ -84,24 +84,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetching and displaying a specific Bible passage
     const passageEl = document.getElementById('bible-passage');
     if (passageEl) {
-        fetchBiblePassage(passageEl, 'John 3:16'); // Replace with the passage you want to fetch
+        fetchBiblePassage(passageEl, 'John 3:16', 'NASB'); // Replace with the passage and translation you want to fetch
     } else {
         console.error('Bible passage element not found'); // Debugging log
     }
 });
 
-async function fetchBiblePassage(element, passage) {
+async function fetchBiblePassage(element, passage, translation) {
     try {
-        const response = await fetch(`https://api.biblegateway.com/3/passage/${encodeURIComponent(passage)}`, {
+        const response = await fetch(`https://api.scripture.api.bible/v1/bibles/${translation}/passages/${encodeURIComponent(passage)}?content-type=json`, {
             headers: {
-                'Authorization': 'YOUR_API_KEY' // Replace with your actual API key
+                'api-key': 'YOUR_API_KEY' // Replace with your actual API key
             }
         });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        element.textContent = `${data.text} - ${data.reference}`;
+        element.textContent = `${data.data.content} - ${data.data.reference}`;
     } catch (error) {
         console.error('Error fetching Bible passage:', error);
         element.textContent = 'Error fetching Bible passage.';
