@@ -81,32 +81,29 @@ document.addEventListener('DOMContentLoaded', function() {
         contactImage.style.transform = 'scale(1)';
     });
 
-    // Fetching and displaying calendar events using FullCalendar
-    const calendarEl = document.getElementById('calendar-container');
-    console.log('Initializing FullCalendar'); // Debugging log
-
-    if (calendarEl) {
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: [ 'dayGrid' ],
-            initialView: 'dayGridMonth',
-            events: async function(fetchInfo, successCallback, failureCallback) {
-                try {
-                    const response = await fetch('https://fullcalendar.io/demo-events.json');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const events = await response.json();
-                    console.log('Events fetched:', events); // Add log here
-                    successCallback(events);
-                } catch (error) {
-                    console.error('Error fetching calendar events:', error);
-                    failureCallback(error);
-                }
-            }
-        });
-
-        calendar.render();
+    // Fetching and displaying the daily Bible verse
+    const dailyVerseEl = document.getElementById('daily-verse');
+    if (dailyVerseEl) {
+        fetchDailyBibleVerse(dailyVerseEl);
     } else {
-        console.error('Calendar element not found'); // Debugging log
+        console.error('Daily verse element not found'); // Debugging log
     }
 });
+
+async function fetchDailyBibleVerse(element) {
+    try {
+        const response = await fetch('https://api.biblegateway.com/v3/daily_verse', {
+            headers: {
+                'Authorization': 'YOUR_API_KEY' // Replace with your actual API key
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        element.textContent = `${data.verse} - ${data.reference}`;
+    } catch (error) {
+        console.error('Error fetching daily Bible verse:', error);
+        element.textContent = 'Error fetching daily Bible verse.';
+    }
+}

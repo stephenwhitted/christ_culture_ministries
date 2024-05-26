@@ -148,3 +148,15 @@ img {
     font-size: 1.2em;
     font-style: italic;
 }
+#passage-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid gold;
+    background-color: #222;
+    color: gold;
+}
+
+#bible-passage {
+    font-size: 1.2em;
+    font-style: italic;
+}
