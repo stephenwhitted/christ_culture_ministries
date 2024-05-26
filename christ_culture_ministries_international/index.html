@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christ Culture Ministries International</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.js"></script>
+</head>
+<body>
+    <header id="header">
+        <h1>Christ Culture Ministries International</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#safe">SAFE Model</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <section id="home">
+            <h2>Restoring a Royal Priesthood: Building a Holy Nation</h2>
+            <a href="#"><img src="christ_culture.jpg" alt="Prayer Call"></a>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <a href="#"><img src="christ_culture_on_call.jpg" alt="Christ Culture On Call"></a>
+            <p>Pastor Don Thomas, Sr.</p>
+        </section>
+
+        <section id="safe">
+            <h2>SAFE Model (PrayerForce)</h2>
+            <a href="#"><img src="prayer_force.jpg" alt="Prayer Force"></a>
+            <p>Description of the 4-star prayer warrior program.</p>
+        </section>
+
+        <section id="events">
+            <h2>Events</h2>
+            <a href="#"><img src="event_image.jpg" alt="Event Activities"></a>
+            <div id="calendar-container"></div>
+            <p>Links to different avenues for events.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <img src="contact_image.jpg" alt="Contact Us Image" class="contact-img">
+            <form id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+                <input type="email" id="email" name="email" placeholder="Your email" required>
+                <textarea id="message" name="message" placeholder="Your message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Information on how to contribute and get in touch.</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
