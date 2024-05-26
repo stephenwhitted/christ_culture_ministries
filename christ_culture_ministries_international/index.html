@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christ Culture Ministries International</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.css" rel="stylesheet" />
-    <link href="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.css" rel="stylesheet" />
 </head>
 <body>
     <header id="header">
@@ -43,7 +41,10 @@
         <section id="events">
             <h2>Events</h2>
             <a href="#"><img src="event_image.jpg" alt="Event Activities"></a>
-            <div id="calendar-container"></div>
+            <div id="daily-verse-container">
+                <h3>Daily Bible Verse</h3>
+                <p id="daily-verse">Loading...</p>
+            </div>
             <p>Links to different avenues for events.</p>
         </section>
 
@@ -60,8 +61,7 @@
         </section>
     </div>
 
-    <script src="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.js"></script>
-    <script src="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
