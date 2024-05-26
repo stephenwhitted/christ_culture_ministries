@@ -48,30 +48,25 @@ images.forEach(image => {
 });
 
 // Handling form submission
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+document.getElementById('contactForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     const formData = new FormData(this);
     const data = {};
     formData.forEach((value, key) => { data[key] = value; });
 
-    // Log data to the console for demonstration purposes
-    console.log('Form Data Submitted: ', data);
-
-    // Normally you would send this data to a server to handle emailing
-    fetch('/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
+    try {
+        const response = await fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        console.log('Success:', result);
+    } catch (error) {
         console.error('Error:', error);
-    });
+    }
 });
 
 // Contact image interactive effects
@@ -90,15 +85,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: [ 'dayGrid' ],
         initialView: 'dayGridMonth',
-        events: function(fetchInfo, successCallback, failureCallback) {
-            axios.get('https://fullcalendar.io/demo-events.json')
-            .then(response => {
-                successCallback(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching calendar events with Axios:', error);
+        events: async function(fetchInfo, successCallback, failureCallback) {
+            try {
+                const response = await fetch('https://fullcalendar.io/demo-events.json');
+                const events = await response.json();
+                successCallback(events);
+            } catch (error) {
+                console.error('Error fetching calendar events:', error);
                 failureCallback(error);
-            });
+            }
         }
     });
 
