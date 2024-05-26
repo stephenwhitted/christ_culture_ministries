@@ -81,18 +81,18 @@ document.addEventListener('DOMContentLoaded', function() {
         contactImage.style.transform = 'scale(1)';
     });
 
-    // Fetching and displaying the daily Bible verse
-    const dailyVerseEl = document.getElementById('daily-verse');
-    if (dailyVerseEl) {
-        fetchDailyBibleVerse(dailyVerseEl);
+    // Fetching and displaying a specific Bible passage
+    const passageEl = document.getElementById('bible-passage');
+    if (passageEl) {
+        fetchBiblePassage(passageEl, 'John 3:16'); // Replace with the passage you want to fetch
     } else {
-        console.error('Daily verse element not found'); // Debugging log
+        console.error('Bible passage element not found'); // Debugging log
     }
 });
 
-async function fetchDailyBibleVerse(element) {
+async function fetchBiblePassage(element, passage) {
     try {
-        const response = await fetch('https://api.biblegateway.com/v3/daily_verse', {
+        const response = await fetch(`https://api.biblegateway.com/3/passage/${encodeURIComponent(passage)}`, {
             headers: {
                 'Authorization': 'YOUR_API_KEY' // Replace with your actual API key
             }
@@ -101,9 +101,9 @@ async function fetchDailyBibleVerse(element) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        element.textContent = `${data.verse} - ${data.reference}`;
+        element.textContent = `${data.text} - ${data.reference}`;
     } catch (error) {
-        console.error('Error fetching daily Bible verse:', error);
-        element.textContent = 'Error fetching daily Bible verse.';
+        console.error('Error fetching Bible passage:', error);
+        element.textContent = 'Error fetching Bible passage.';
     }
 }
