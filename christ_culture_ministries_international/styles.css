@@ -130,3 +130,8 @@ img {
     background-color: #222;
     color: gold;
 }
+
+#calendar-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
