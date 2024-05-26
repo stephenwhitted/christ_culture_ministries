@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded and parsed');
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -81,25 +83,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetching and displaying calendar events using FullCalendar
     const calendarEl = document.getElementById('calendar-container');
+    console.log('Initializing FullCalendar'); // Debugging log
 
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'dayGrid' ],
-        initialView: 'dayGridMonth',
-        events: async function(fetchInfo, successCallback, failureCallback) {
-            try {
-                const response = await fetch('https://fullcalendar.io/demo-events.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+    if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'dayGrid' ],
+            initialView: 'dayGridMonth',
+            events: async function(fetchInfo, successCallback, failureCallback) {
+                try {
+                    const response = await fetch('https://fullcalendar.io/demo-events.json');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const events = await response.json();
+                    console.log('Events fetched:', events); // Add log here
+                    successCallback(events);
+                } catch (error) {
+                    console.error('Error fetching calendar events:', error);
+                    failureCallback(error);
                 }
-                const events = await response.json();
-                console.log('Events fetched:', events); // Add log here
-                successCallback(events);
-            } catch (error) {
-                console.error('Error fetching calendar events:', error);
-                failureCallback(error);
             }
-        }
-    });
+        });
 
-    calendar.render();
+        calendar.render();
+    } else {
+        console.error('Calendar element not found'); // Debugging log
+    }
 });

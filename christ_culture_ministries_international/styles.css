@@ -136,3 +136,15 @@ img {
     margin: 0 auto;
     background-color: white;
 }
+#daily-verse-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid gold;
+    background-color: #222;
+    color: gold;
+}
+
+#daily-verse {
+    font-size: 1.2em;
+    font-style: italic;
+}
