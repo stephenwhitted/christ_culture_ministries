@@ -14,7 +14,8 @@ async function fetchGeolocation(element) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        element.textContent = `You are in ${data.city}, ${data.region}, ${data.country}.`;
+        const locationText = `${data.city}, ${data.region}, ${data.country}`;
+        element.textContent = `Christ Culture Ministries International would like to invite you to be an ambassador of the Christ Culture in ${locationText}.`;
     } catch (error) {
         console.error('Error fetching geolocation:', error);
         element.textContent = 'Error fetching geolocation.';

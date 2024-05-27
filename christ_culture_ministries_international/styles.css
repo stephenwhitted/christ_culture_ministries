@@ -161,3 +161,28 @@ img {
     font-size: 1.2em;
     font-style: italic;
 }
+#geolocation-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid gold;
+    background-color: #222;
+    color: gold;
+}
+
+#geolocation {
+    font-size: 1.2em;
+}
+#geolocation-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid gold;
+    background-color: #222;
+    color: gold;
+}
+
+.bold-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
